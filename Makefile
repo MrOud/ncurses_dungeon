@@ -3,8 +3,8 @@ INCDIRS=-I.
 OPT=-O0
 CFLAGS=-Wall -Wextra -g  $(OPT)
 
-CFILES=playGame.c player.o
-OBJECTS=player.o playGame.o
+CFILES=playGame.c player.o dungeon.c
+OBJECTS=player.o playGame.o dungeon.o
 
 BINARY=playGame
 

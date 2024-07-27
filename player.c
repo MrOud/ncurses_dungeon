@@ -15,7 +15,6 @@ void init_player(Player * p) {
 }
 
 void player_set_name(Player * p, char name[]) {
-  strcpy(p->name, name);
+  strncpy(p->name, name, NAME_LEN);
 }
-
 
