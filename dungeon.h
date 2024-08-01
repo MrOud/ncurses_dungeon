@@ -13,11 +13,11 @@
 #define HAS_EVENT     0x80
 
 //Dungeon Size
-#define DUNGEON_WIDTH  10;
-#define DUNGEON_LENGTH 10;
+#define DUNGEON_WIDTH  10
+#define DUNGEON_LENGTH 10
 
 typedef struct dungeon_room {
-  int dungeon_status; 
+  int dungeon_flags; 
   int x_coord;
   int y_coord;
   struct Dungeon_Room * room_north;
@@ -27,7 +27,7 @@ typedef struct dungeon_room {
 
 } Dungeon_Room;
 
-void init_first_room(Dungeon_Room * d);
+void init_room(Dungeon_Room * d);
 void generate_dungeon(Dungeon_Room * d);
 
 #endif // ! dungeon_h 

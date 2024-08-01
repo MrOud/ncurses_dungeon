@@ -15,7 +15,11 @@ void print_player(Player * p) {
 void print_dungeon(Dungeon_Room * d) {
   printf("Dungeon\n--------\n");
   printf("X: %d Y: %d\n", d->x_coord, d->y_coord);
-  printf("Status: %d\n", d->dungeon_status);
+  printf("Status: %d\n", d->dungeon_flags);
+  printf("Door N: %d\n", (d->dungeon_flags & DOOR_NORTH));
+  printf("Door S: %d\n", (d->dungeon_flags & DOOR_SOUTH));
+  printf("Door E: %d\n", (d->dungeon_flags & DOOR_EAST));
+  printf("Door W: %d\n", (d->dungeon_flags & DOOR_WEST));
 }
 
 int main(int argc, char *argv[]) {
@@ -28,9 +32,13 @@ int main(int argc, char *argv[]) {
   printf("\n");
 
   Dungeon_Room *dungeon_root = (Dungeon_Room*)malloc(sizeof(Dungeon_Room));
-  init_first_room(dungeon_root);
+  init_room(dungeon_root);
   generate_dungeon(dungeon_root);
   print_dungeon(dungeon_root);
+  dungeon_root = (Dungeon_Room*)dungeon_root->room_south;
+  print_dungeon(dungeon_root);
+  dungeon_root = (Dungeon_Room*)dungeon_root->room_north;
+  free(dungeon_root->room_south);
   free(dungeon_root);
   return 0
   ;
