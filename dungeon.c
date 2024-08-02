@@ -36,7 +36,6 @@ void generate_dungeon(Dungeon_Room *d) {
   map[y_current][x_current] = 1;
 
   //add a second room
-  
   Dungeon_Room *cur_room;
   d->room_south = malloc(sizeof(Dungeon_Room));
   d->dungeon_flags |= DOOR_SOUTH;
