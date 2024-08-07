@@ -12,7 +12,23 @@ int main(int argc, char *argv[]) {
   init_player(player);
   player_set_name(player, "Spielen");
   init_screen();
-  print_player(player);
+  //print_player(player);
+  char *start_menu[] = {"New Game", "Continue", "Quit"};
+  int menu_choice = create_menu(start_menu, 3);
+  char *sub_menu1[] = {"Merp", "Derp", "Bagurp"};
+  char *sub_menu2[] = {"Kettlecorn", "Kettle bells", "Caddle Bells", "Cow Corn"};
+
+  if (menu_choice == 1) {
+    clear();
+    menu_choice = create_menu(sub_menu1, 3);
+    mvprintw(10, 20, "You picked %d", menu_choice);
+  } else if (menu_choice == 2) {
+    clear();
+    menu_choice = create_menu(sub_menu2, 4);
+    mvprintw(10, 20, "You picked %d", menu_choice);
+  } else {
+    mvprintw(10, 20, "You picked %d", menu_choice);
+  }
   getch();
   endwin();
   free(player);

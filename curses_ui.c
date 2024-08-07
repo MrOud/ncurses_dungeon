@@ -12,6 +12,57 @@ void init_screen() {
   keypad(stdscr, TRUE);
 }
 
+int create_menu(char *choices[], int n_choices) {
+  int highlight = 1;
+  int choice = 0;
+  int c;
+  while (1) {
+    print_menu(choices, 3, highlight);
+    c = getch();
+    switch(c) {
+      case 'w':
+      case KEY_UP:
+        if (highlight == 1) {
+          highlight = 3;
+        } else {
+          highlight--;
+        }
+        break;
+      case 's':
+      case KEY_DOWN:
+        if (highlight == 3) {
+          highlight = 1;
+        } else {
+          highlight++;
+        }
+        break;
+      case 10:
+        choice = highlight;
+        break;
+    }
+
+    if (choice != 0) return choice;
+  }
+}
+
+void print_menu(char* choices[], int n_choices, int highlight) {
+  int x; 
+  int y; 
+  x = 2;
+  y = 2;
+  for(int i = 0; i < n_choices; i++) {
+    if (highlight == i + 1) {
+      attron(A_REVERSE);
+      mvprintw(y, x, "%s", choices[i]);
+      attroff(A_REVERSE);
+    } else {
+      mvprintw(y, x, "%s", choices[i]);
+    }
+    y++;
+  }
+  refresh();
+}
+
 void print_player(Player * p) {
   printw("Player made\n-----\n");
   printw("%s\n", p->name);
